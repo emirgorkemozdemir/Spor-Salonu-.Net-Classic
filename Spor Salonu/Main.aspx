@@ -10,7 +10,7 @@
 <body>
     <form id="form1" runat="server">
         <asp:Button CssClass="btn btn-danger" ID="btnNewCustomer" runat="server" Text="Add New Customer" OnClick="btnNewCustomer_Click" />
-        <asp:Button CssClass="btn btn-danger" ID="btnShowCustomer" runat="server" Text="Show Customer" />
+        <asp:Button CssClass="btn btn-danger" ID="btnShowAllCustomer" runat="server" Text="Show All Customer" OnClick="btnShowAllCustomer_Click" />
         <asp:Button CssClass="btn btn-danger" ID="btnStats" runat="server" Text="My Stats" />
         <asp:Button CssClass="btn btn-danger" ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" />
     </form>
