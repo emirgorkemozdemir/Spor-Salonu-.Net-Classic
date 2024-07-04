@@ -6,23 +6,26 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class ShowAllCustomers : System.Web.UI.Page
+public partial class CustomerDetails : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        // Admin giriş yapılı durumda mı onu kontrol etmem lazım.
-        // Çünkü bu sayfaya admin giriş yaptıysa erişim olmalı.
+        // Diğer sayfadan gönderilen id değerine göre tek bir kullanıcıyı almam 
+        // gerekiyor.
+
         if (Convert.ToBoolean(Session["IsAdminOnline"]) == false)
         {
             Response.Redirect("Login.aspx");
         }
         else
         {
+            int selected_id = Convert.ToInt32(Request.QueryString["customerid"]);
             // Bağlantıyı kontrol ettik
             MyConnection.CheckConnection();
 
             // Verileri almak için bir sql komutu oluşturuyorum.
-            SqlCommand command_list = new SqlCommand("SELECT CustomerID,CustomerNameSurname,CustomerSubDate FROM TableCustomer", MyConnection.connection);
+            SqlCommand command_list = new SqlCommand("SELECT * FROM TableCustomer WHERE CustomerID=@pid", MyConnection.connection);
+            command_list.Parameters.AddWithValue("@pid",selected_id);
 
             // Komutu okuyucuda okuduk.
             SqlDataReader reader = command_list.ExecuteReader();
@@ -34,6 +37,7 @@ public partial class ShowAllCustomers : System.Web.UI.Page
             ListView1.DataBind();
 
             reader.Close();
+
         }
     }
 }

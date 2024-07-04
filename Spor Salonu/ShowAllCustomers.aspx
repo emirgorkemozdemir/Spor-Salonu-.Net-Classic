@@ -8,28 +8,32 @@
     <link rel="stylesheet" href="Content/bootstrap.css" />
 </head>
 <body>
-    <asp:DataList ID="DataList1" runat="server">
-        <ItemTemplate>
 
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name Surname</th>
-                        <th>Subscription Date</th>
-                    </tr>
-                </thead>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Customer Name Surname</th>
+                <th>Customer Subscription Date</th>
+                <th>Show Customer Details</th>
+                <th>Delete Customer</th>
+            </tr>
+        </thead>
 
-                <tbody>
-                    <tr>
+        <tbody>
+            <asp:ListView ID="ListView1" runat="server">
+                <ItemTemplate>
+                    <tr class="table table-hover">
                         <td><%# Eval("CustomerID") %></td>
                         <td><%# Eval("CustomerNameSurname") %></td>
                         <td><%# Eval("CustomerSubDate") %></td>
+                        <td><a class="btn btn-success" href="CustomerDetails.aspx?customerid=<%# Eval("CustomerID") %>">Get Detail</a></td>
+                        <td><a class="btn btn-danger" href="DeleteCustomer.aspx?customerid=<%# Eval("CustomerID") %>">Delete</a></td>
                     </tr>
-                </tbody>
-            </table>
+                </ItemTemplate>
+            </asp:ListView>
+        </tbody>
+    </table>
 
-        </ItemTemplate>
-    </asp:DataList>
 </body>
 </html>
