@@ -24,6 +24,7 @@ public partial class List : System.Web.UI.Page
 
     protected void tboxFilter_TextChanged(object sender, EventArgs e)
     {
+        // Bir tane metot oluşturun. Bu metotta fiyata göre filtreleme yapınç
         MyConnectionn.CheckConnection();
 
         SqlCommand cmd = new SqlCommand("SELECT * FROM TableProduct WHERE ProductName LIKE @pname", MyConnectionn.connection);
